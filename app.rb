@@ -1,5 +1,6 @@
 require 'bundler'
 Bundler.require
+require 'debugger'
 
 require './lib/parser.rb'
 require './lib/artist.rb'
