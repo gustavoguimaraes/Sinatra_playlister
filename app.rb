@@ -10,12 +10,12 @@ require './lib/genre.rb'
 module Playlister
   class App < Sinatra::Application
     
-    before do
+    
       @my_directory = Parser.new.make_directory("data")
       @my_artists = Artist.all 
       @my_genres = Genre.all
       @requested_artist
-    end
+    
 
     get '/' do
       erb :directory
