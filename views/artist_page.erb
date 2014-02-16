@@ -4,8 +4,16 @@
 <ol>
     <% @requested_artist.songs.each_with_index do |song, index| %>
     <h2><%= "#{index + 1}- #{song.title};" %></h2> 
-    
+    <% url_artist = @requested_artist.name.gsub(" ","%20")%>
+    <% url_song  = song.title.strip.gsub(" ","%20")%>
+    <%my_scraper = Youtube_Scraper.new(url_artist, url_song)%>
+
+    <% url = my_scraper.video%>
+
+    <iframe width="560" height="315" src="<%=url%>" frameborder="0" allowfullscreen></iframe>
   <% end %>
 <ol>
 
 <h4>Back to the <a href="/"><button class="my_button">directory!</button></a></h4>
+ <p>Or</p>
+<h4>Back to the <a href="/artist_directory"><button class="my_button">Artists</button></a></h4>

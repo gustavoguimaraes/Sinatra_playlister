@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     bond (0.4.3)
     columnize (0.3.6)
@@ -9,6 +9,9 @@ GEM
       debugger-ruby_core_source (~> 1.2.4)
     debugger-linecache (1.2.0)
     debugger-ruby_core_source (1.2.4)
+    mini_portile (0.5.2)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     rack (1.5.2)
     rack-protection (1.5.1)
       rack
@@ -40,6 +43,7 @@ PLATFORMS
 
 DEPENDENCIES
   debugger
+  nokogiri
   shotgun
   sinatra
   tux

@@ -6,10 +6,12 @@ require './lib/parser.rb'
 require './lib/artist.rb'
 require './lib/song.rb'
 require './lib/genre.rb'
+require './lib/youtube.rb'
 
 module Playlister
   class App < Sinatra::Application
     @my_directory = Parser.new.make_directory("data")
+    
     before do
       
       @my_artists = Artist.all 
@@ -27,21 +29,25 @@ module Playlister
     end
 
     get '/artists/:name' do
+      
       request = params[:name]
       @my_artists.each do |artist|
         if artist.slugged_name.downcase == request.downcase
           @requested_artist = artist
         end
+        
       end
+
       erb :artist_page
     end
 
-    get '/songs/:artist/:index' do
-      creator = params[:artist]
-      location = params[:index]
-      @song = @my_artists.songs[location.to_i]
-      erb :artist_page
-    end
+    #the method below is for in case I want to create a song page in the future
+    # get '/songs/:artist/:index' do
+    #   creator = params[:artist]
+    #   location = params[:index]
+    #   @song = @my_artists.songs[location.to_i]
+    #   erb :artist_page
+    # end
 
     get '/genre_directory' do
       @my_genres

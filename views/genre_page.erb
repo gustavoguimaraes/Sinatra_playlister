@@ -1,15 +1,22 @@
 
 <h1>Welcome to the <%= @requested_genre.name %> page!</h1> 
-<ul><h2><%= @requested_genre.name%> has these songs:</h2></ul>
-
-
+<ul>
+  <h2><%= @requested_genre.name%> has these songs:</h2>
+</ul>
   <ol>
-    
     <% @requested_genre.songs.each_with_index do |song, index| %>
     <p><%= "#{index + 1}-"%><b><%= "#{song.title}" %></b><%=", performed by #{song.artist.name};" %></p>
+
+    <% url_artist = song.artist.name.gsub(" ","%20")%>
+    <% url_song  = song.title.strip.gsub(" ","%20")%>
+    <%my_scraper = Youtube_Scraper.new(url_artist, url_song)%>
+
+    <% url = my_scraper.video%>
+
+    <iframe width="560" height="315" src="<%=url%>" frameborder="0" allowfullscreen></iframe>
   <% end %>
-  
 <ol>
 
-
 <h4>Back to the <a href="/"><button class="my_button">directory!</button></a></h4>
+<p>or</p>
+<h4>Back to <a href="/genre_directory"><button class="my_button">Genres</button></a></h4>

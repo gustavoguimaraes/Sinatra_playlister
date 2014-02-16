@@ -19,4 +19,5 @@ attr_accessor :genre, :artist, :title, :slugged_name
     song_genre.songs << self
   end
 
+
 end
